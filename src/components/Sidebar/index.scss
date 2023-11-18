@@ -1,4 +1,9 @@
+body{
+}
 .nav-bar {
+    &:hover{
+        cursor:default;
+    }
     background: #181818;
     width: 60px;
     height: 100%;
