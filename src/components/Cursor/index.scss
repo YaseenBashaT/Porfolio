@@ -1,18 +1,19 @@
 body{
-    height: 100vh;
-    // background-color: #05c977;
     cursor: none;
 }
 .cursor-dot{
     height: 5px;
     width: 5px;
     background-color: #05c977;
+
+    
 }
 
 .cursor-outline{
     width: 10px;
     height: 10px;
     border: 2px solid hsla(0, 0%, 100%, 0.5);
+    
 }
 
 .cursor-dot,
@@ -21,7 +22,11 @@ body{
     top:0;
     left: 0;
     transform:translate(-50%, -50%);
-    border-radius: 50%;
-    z-index: 1;
+    border-radius: 20%;
+    z-index: -1;
+    &:hover{
+        z-index: 1;
+    }
+    
 }
 
