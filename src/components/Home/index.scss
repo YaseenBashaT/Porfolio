@@ -1,5 +1,6 @@
 .text-zone{
-    margin: 300px 0 0 250px;
+    // width: 1000px;
+    margin: 250px 0 0 250px;
     letter-spacing: 3.5px;
     h2{
         color: #8d8d8d;
@@ -11,26 +12,39 @@
         animation: fadeIn 1s 1.3s backwards;
     }
 }
-.title-img{
-    width: 100px;
-    height:auto;
+.title-img {
+    width: auto ;
+    height: 120px; 
+    z-index: 2;
+    margin-right:-15px;
     margin-bottom: -9px;
     opacity: 0;
     animation: rotateIn 1s linear both;
-    animation-delay: 1.4s;
+    animation-delay: 0.5s;
+    position: relative;
+    transition: all 0.6s ease-out;
+    perspective: 300px;
+    transition: transform 0.3s ease-in-out;
 
-    &:hover{
-        transform: scale3d(1,1,0.5);
-        transform-origin: top left right bottom ;
+    &:hover {
+        transform: rotate(45deg);
+        cursor: pointer;
     }
-
 }
+
+.title-img:hover {
+    // animation: fadeIn 1s 1.7s backwards;
+    
+    transform: rotate(20deg);
+    
+}
+
 .name{
     margin-left: -24px;
 }
 h1{
     color: #edeaea;
-    font-size: 53px;
+    font-size: 83px;
     margin: 0;
     font-family: 'Coolvetica';
     font-weight: 400;
@@ -54,8 +68,8 @@ h1{
         position: absolute;
         margin-top:18px;
         margin-left: 40px;
-        animation: fadeIn 1s 1.7s backwards;
         opacity:0.6;
+        animation: fadeIn 1s 1.7s forwards;
     }
 
 }
@@ -65,7 +79,7 @@ h2{
     font-weight:400px;
     font-size: 11px;
     letter-spacing: 3px;
-    animation: fadeIn 1s 1.4s backwards;
+    animation: fadeIn 1s 0.5s backwards;
     // margin-left: 15px;
 }
 .redirect-contact{
@@ -82,7 +96,8 @@ h2{
     animation: fadeIn 1s 1.8s backwards;
     white-spacing : nowrap;
     border-radius: 5px;
-
+    z-index: 2;
+    
     &:hover{
         background: #05c977;
         color: #333;
@@ -90,3 +105,21 @@ h2{
     }
 
 }
+
+.home{
+    display: flex;
+    // border: 1px solid ;
+    margin-top: 100px;
+}
+.Me{
+    // margin-top: 200px;
+    // margin-left: 100px;
+    width: 800px;
+    height: 550px;
+    background-size: cover; /* Ensure the image covers the entire container */
+    // clip-path: polygon(0 0, 70% 0, 87% 100%, 10% 100%);
+    margin: 100px 0 0 250px;
+    padding-bottom: 20px;
+    z-index: -1;
+    border-radius: 50%;
+    }

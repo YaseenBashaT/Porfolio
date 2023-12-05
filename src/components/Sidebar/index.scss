@@ -48,6 +48,8 @@
 
         &:hover{
             color:#05c977;
+            z-index: 1;
+            cursor: pointer;
             
             svg{
                 opacity: 0;
@@ -59,7 +61,7 @@
         }
         &:after{
             content:'';
-            font-size: 9px;
+            font-size: 7px;
             letter-spacing: 2px;
             position: absolute;
             bottom:0;
