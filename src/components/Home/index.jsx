@@ -24,6 +24,7 @@ function Home() {
         <div className='home'>
             <div className='text-zone'>
                 <h1>Hello there, <br />  I'm
+                
                 <img className='title-img' src={LogoTitle} alt='Y'/>
                 <span className='name'>aseen</span>
                 <br/>
@@ -34,10 +35,12 @@ function Home() {
             </div>
             <div className='myImg'>
                 <div className="image">
-
+                <div class="Me" data-tilt >
                     <img className='Me' src={Me}/>
                 </div>
+                </div>
             </div>
+            <script type="text/javascript" src="vanilla-tilt.js"></script>
         </div>
     );
 }
