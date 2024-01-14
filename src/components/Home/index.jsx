@@ -6,14 +6,14 @@ import './index.scss';
 
 function Home() {
     const myImg = document.querySelector(".myImg");
-    const Img = document.querySelector(".image");
+    const Imge = document.querySelector(".image");
 
-    if (myImg && Img) {
+    if (myImg && Imge) {
         myImg.addEventListener("mousemove", (e) => {
             const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
             const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
 
-            Img.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
+            Imge.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
         });
     } else {
         console.error("One or both of the elements (.myImg or .image) not found.");
