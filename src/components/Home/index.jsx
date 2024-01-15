@@ -5,19 +5,6 @@ import Me from '../../assets/images/me.png'
 import './index.scss';
 
 function Home() {
-    const myImg = document.querySelector(".myImg");
-    const Imge = document.querySelector(".image");
-
-    if (myImg && Imge) {
-        myImg.addEventListener("mousemove", (e) => {
-            const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-            const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-
-            Imge.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg)`;
-        });
-    } else {
-        console.error("One or both of the elements (.myImg or .image) not found.");
-    }
     return (
         
             
