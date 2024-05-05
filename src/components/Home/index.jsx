@@ -36,7 +36,7 @@ function Home() {
             <div className='myImg'>
                 <div className="image">
                 <div class="Me" data-tilt >
-                    <img className='Me' src={Me}/>
+                    <img className='Me' src={Me} alt='me'/>
                 </div>
                 </div>
             </div>
