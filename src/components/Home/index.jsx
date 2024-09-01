@@ -24,8 +24,7 @@ function Home() {
         <div className='home'>
             <div className='text-zone'>
                 <h1>Hello there, <br />  I'm
-                
-                <img className='title-img' src={LogoTitle} alt='Y'/>
+                <img className='title-img data-tilt' src={LogoTitle} alt='Y'/>
                 <span className='name'>aseen</span>
                 <br/>
                 web developer
