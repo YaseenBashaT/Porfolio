@@ -25,3 +25,23 @@ $primary-color: #05c977;
   font-weight: normal;
   font-style: normal;
 }
+*{
+  cursor: default;
+}
+.loader-hidden {
+  display: none;
+}
+
+.loader-active {
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  top: 0;
+  bottom: 0;
+  width: 50px;
+  height: 50px;
+  animation: fadeOut 1s 1s;
+  animation-fill-mode: forwards;
+}
