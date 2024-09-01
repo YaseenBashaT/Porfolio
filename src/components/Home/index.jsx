@@ -32,14 +32,7 @@ const Home = () => {
                 <h2>Frontend Developer / Expert in Javascript, DSA / Student </h2>
                 <Link to='/contact' className='redirect-contact'>Contact Me</Link> 
             </div>
-            <div className='myImg'>
-                <div className="image">
-                <div class="Me" data-tilt >
-                    <img className='Me' src={Me}/>
-                </div>
-                </div>
-            </div>
-            <script type="text/javascript" src="vanilla-tilt.js"></script>
+            
         </div>
         </>
     );
