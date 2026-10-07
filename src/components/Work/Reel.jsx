@@ -18,15 +18,15 @@ const Reel = ({ count, children }) => {
   useEffect(() => {
     const mq = window.matchMedia(MQ)
     const scroller = reel.current.closest('.page')
-    let travel = 0, len = 0, raf = 0
+    let travel = 0, len = 0, raf = 0, startX = 0, endX = 1
 
     const update = () => {
       raf = 0
       if (!mq.matches) return
       const top = reel.current.getBoundingClientRect().top
       const p = travel ? Math.min(1, Math.max(0, -top / travel)) : 0
-      const w = track.current.scrollWidth
-      const drawn = Math.min(1, (p * travel + stage.current.clientWidth) / w)
+      const reach = p * travel + stage.current.clientWidth
+      const drawn = Math.min(1, Math.max(0, (reach - startX) / (endX - startX)))
       track.current.style.transform = `translate3d(${-p * travel}px, 0, 0)`
       thread.current.style.strokeDashoffset = len * (1 - drawn)
       fill.current.style.transform = `scaleX(${p})`
@@ -51,14 +51,15 @@ const Reel = ({ count, children }) => {
         c.offsetLeft + c.offsetWidth / 2,
         c.offsetTop,
       ])
-      let [px, py] = [0, pts[0][1] + 40]
+      startX = Math.max(0, pts[0][0] - 220)
+      endX = pts[pts.length - 1][0]
+      let [px, py] = [startX, pts[0][1] + 30]
       let d = `M ${px} ${py}`
       pts.forEach(([x, y]) => {
         const mx = (px + x) / 2
         d += ` C ${mx} ${py} ${mx} ${y} ${x} ${y}`
         ;[px, py] = [x, y]
       })
-      d += ` C ${px + 200} ${py} ${w - 200} ${py + 60} ${w} ${py + 60}`
       base.current.setAttribute('d', d)
       thread.current.setAttribute('d', d)
       len = thread.current.getTotalLength()
