@@ -18,7 +18,7 @@ const HangTag = ({ item }) => {
     const loop = () => {
       const dx = x - px
       px = x
-      const target = Math.max(-38, Math.min(38, -dx * 1.4))
+      const target = Math.max(-38, Math.min(38, dx * 1.4))
       vel += (target - ang) * 0.07
       vel *= 0.9
       ang += vel
