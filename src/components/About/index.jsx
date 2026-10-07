@@ -1,73 +1,86 @@
 import { useEffect, useState } from 'react'
-import {
-  faJava,
-  faCss3,
-  faPython,
-  faHtml5,
-  faJsSquare,
-  faReact,
-} from '@fortawesome/free-brands-svg-icons'
-import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import useReveal from '../../hooks/useReveal'
 import './index.scss'
+
+const rowA = ['Python', 'JavaScript', 'Java', 'SQL', 'C', 'React', 'FastAPI', 'Node.js', 'Tailwind', 'D3.js']
+const rowB = ['PyTorch', 'TRL / GRPO', 'LangChain', 'RAG', 'Vector search', 'Knowledge graphs', 'Docker', 'PostgreSQL', 'MongoDB', 'Linux']
+
+const facts = [
+  ['Studying', 'B.Tech, AI & ML · Vignan\'s Lara Institute of Technology, 2022–26'],
+  ['Based in', 'Guntur, India'],
+  ['Focus', 'LLM tooling, RL fine-tuning, full-stack'],
+  ['Open source', 'Merged PRs in TRL and LiteLLM'],
+  ['Certified', 'Scrimba AI Engineer Path · Apna College DSA'],
+]
+
+const Row = ({ items, reverse }) => (
+  <div className={`marquee ${reverse ? 'rev' : ''}`}>
+    <div className="track">
+      {[...items, ...items].map((t, i) => (
+        <span key={t + i} aria-hidden={i >= items.length}>{t}</span>
+      ))}
+    </div>
+  </div>
+)
 
 const About = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
+  useReveal()
 
   useEffect(() => {
-     setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 3000)
+    const t = setTimeout(() => setLetterClass('text-animate-hover'), 3000)
+    return () => clearTimeout(t)
   }, [])
 
   return (
-    <>
-      <div className="container about-page">
-        <div className="text-zone">
+    <div className="about">
+      <div className="about-grid">
+        <div className="about-text">
+          <p className="kicker" data-reveal><span>01</span> About</p>
           <h1>
             <AnimatedLetters
               letterClass={letterClass}
               strArray={['A', 'b', 'o', 'u', 't', ' ', 'm', 'e']}
-              idx={15}
+              idx={6}
             />
           </h1>
-          <p>
-          I’m currently pursuing a BTech in AI and Machine Learning, with a solid grasp of Data Structures, Algorithms, and web development. I have hands-on experience with HTML, CSS, JavaScript, and React.
+          <p className="lead" data-reveal style={{ '--d': 150 }}>
+            I'm a final-year <em>AI &amp; ML</em> student who builds AI-assisted
+            tools end to end, from data pipeline to live demo.
           </p>
-          <p align="LEFT">
-          I’ve worked on several projects, including a dynamic portfolio, a market risk monitoring dashboard, and a movie recommendation system. These projects reflect my passion for building effective and user-friendly solutions.
+          <p data-reveal style={{ '--d': 250 }}>
+            Most of what I build starts from a problem I actually hit: a repo
+            analyzer for unfamiliar 2,000-file codebases, an incident-memory
+            tool because on-call knowledge walks out the door.
           </p>
-          <p>
-          I am passionate about developing innovative applications and working in dynamic, collaborative environments. I am eager to contribute my skills to impactful projects and continue growing as a developer.
+          <p data-reveal style={{ '--d': 350 }}>
+            Our RL agent placed 12th of 31,000+ registrations at the OpenEnv
+            hackathon by Meta, Hugging Face and PyTorch. I also send fixes
+            upstream to the libraries I use, with merged PRs in TRL and
+            LiteLLM. I use Claude Code and Copilot daily.
           </p>
         </div>
 
-        <div className="stage-cube-cont">
-          <div className="cubespinner">
-            <div className="face1">
-            <FontAwesomeIcon icon={faJava} />
-            </div>
-            <div className="face2">
-              <FontAwesomeIcon icon={faHtml5} color="#F06529" />
-            </div>
-            <div className="face3">
-              <FontAwesomeIcon icon={faCss3} color="#28A4D9" />
-            </div>
-            <div className="face4">
-              <FontAwesomeIcon icon={faReact} color="#5ED4F4" />
-            </div>
-            <div className="face5">
-              <FontAwesomeIcon icon={faJsSquare} color="#EFD81D" />
-            </div>
-            <div className="face6">
-              <FontAwesomeIcon icon={faPython}  />
-            </div>
-          </div>
-        </div>
+        <aside className="about-card" data-reveal style={{ '--d': 300 }}>
+          <span className="card-label">profile.json</span>
+          <dl>
+            {facts.map(([k, v]) => (
+              <div key={k}>
+                <dt>{k}</dt>
+                <dd>{v}</dd>
+              </div>
+            ))}
+          </dl>
+        </aside>
       </div>
-      <Loader type="pacman" />
-    </>
+
+      <div className="skills" data-reveal>
+        <p className="kicker"><span>—</span> Tools I reach for</p>
+        <Row items={rowA} />
+        <Row items={rowB} reverse />
+      </div>
+    </div>
   )
 }
 

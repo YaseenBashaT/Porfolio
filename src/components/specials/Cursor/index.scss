@@ -1,0 +1,68 @@
+html.has-cursor,
+html.has-cursor * {
+  cursor: none !important;
+}
+
+.cursor-dot,
+.cursor-outline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 20%;
+  transition: opacity 0.25s;
+
+  &.is-hidden {
+    opacity: 0;
+  }
+}
+
+.cursor-dot {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+}
+
+.cursor-outline {
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid hsla(0, 0%, 100%, 0.5);
+  display: grid;
+  place-items: center;
+  transition: width 0.4s var(--ease), height 0.4s var(--ease),
+    background 0.3s, border-color 0.3s, border-radius 0.4s, opacity 0.25s;
+
+  &[data-state='link'] {
+    width: 52px;
+    height: 52px;
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+
+  &[data-state='label'] {
+    width: 86px;
+    height: 86px;
+    border-radius: 50%;
+    border-color: var(--accent);
+    background: var(--accent);
+  }
+
+  &.is-down {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.cursor-label {
+  font: 500 11px/1 var(--mono);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #0e232a;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.cursor-outline[data-state='label'] .cursor-label {
+  opacity: 1;
+}

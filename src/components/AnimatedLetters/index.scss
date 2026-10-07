@@ -3,6 +3,7 @@
     opacity: 0;
     animation: bounceIn;
     animation-duration: 1s;
+    animation-fill-mode: both;
     // animation-delay: 1s;
     // animation-fill-mode: forwards;
     min-width: 10px;

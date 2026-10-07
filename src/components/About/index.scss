@@ -1,82 +1,182 @@
-.stage-cube-cont {
-    width: 50%;
-    height: 100%;
-    top: 0;
-    padding-top: 18%;
-    margin-left: 0;
-    position: absolute;
-    right: 0;
-    overflow: hidden;
+.about {
+  min-height: 100vh;
+  padding: 120px 0 90px clamp(24px, 6vw, 110px);
+  overflow: hidden;
+
+  .kicker {
+    margin: 0 0 18px;
+    font: 400 12px/1 var(--mono);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+    span {
+      margin-right: 12px;
+      color: var(--accent);
+    }
   }
-  
-  .cubespinner {
-    animation-name: spincube;
-    animation-timing-function: ease-in-out;
-    animation-iteration-count: infinite;
-    animation-duration: 12s;
-    transform-style: preserve-3d;
-    transform-origin: 100px 100px 0;
-    margin-left: calc(50% - 100px);
-  
-    div {
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 0.8fr);
+  gap: clamp(30px, 6vw, 110px);
+  padding-right: clamp(24px, 5vw, 90px);
+  align-items: start;
+}
+
+.about-text {
+  h1 {
+    position: relative;
+    margin: 0 0 36px;
+    font: 400 clamp(60px, 9vw, 140px) / 0.95 var(--display);
+    letter-spacing: 1px;
+    color: var(--text);
+    .text-animate,
+    .text-animate-hover {
+      padding-right: 0;
+      margin-top: 0;
+      min-width: 0.22em;
+    }
+    &::before {
+      content: '<h1>';
       position: absolute;
-      width: 200px;
-      height: 200px;
-      border: 1px solid #ccc;
-      background: rgba(255, 255, 255, 0.4);
-      text-align: center;
-      font-size: 100px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 0 20px 0px lightyellow;
-    }
-  
-    .face1 {
-      transform: translateZ(100px);
-      color: #dd0031;
-    }
-    .face2 {
-      transform: rotateY(90deg) translateZ(100px);
-      color: #f06529;
-    }
-    .face3 {
-      transform: rotateY(90deg) rotateX(90deg) translateZ(100px);
-      color: #28a4d9;
-    }
-    .face4 {
-      transform: rotateY(180deg) rotateZ(90deg) translateZ(100px);
-      color: #5ed4f4;
-    }
-    .face5 {
-      transform: rotateY(-90deg) rotateZ(90deg) translateZ(100px);
-      color: #efd81d;
-    }
-    .face6 {
-      transform: rotateX(-90deg) translateZ(100px);
-      color: #ec4d28;
+      top: -22px;
+      left: 4px;
+      font: 18px 'La Belle Aurore', cursive;
+      color: var(--accent);
+      opacity: 0.6;
+      letter-spacing: 0;
     }
   }
-  
-  @keyframes spincube {
-    from,
-    to {
-      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg);
-    }
-    16% {
-      transform: rotateY(-90deg) rotateZ(90deg);
-    }
-    33% {
-      transform: rotateY(-90deg) rotateX(90deg);
-    }
-    50% {
-      transform: rotateY(-180deg) rotateZ(90deg);
-    }
-    66% {
-      transform: rotateY(-270deg) rotateX(90deg);
-    }
-    83% {
-      transform: rotateX(90deg);
+  p {
+    max-width: 620px;
+    margin: 0 0 20px;
+    font-size: 17px;
+    line-height: 1.75;
+    color: #b4b4b4;
+  }
+  .lead {
+    font-size: clamp(22px, 2.2vw, 30px);
+    line-height: 1.4;
+    color: var(--text);
+    em {
+      font: italic 400 1.15em var(--serif);
+      color: var(--accent);
     }
   }
-  
+}
+
+.about-card {
+  position: relative;
+  padding: 30px 28px 14px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  margin-top: 90px;
+  transition: transform 0.6s var(--ease), border-color 0.4s;
+
+  &:hover {
+    border-color: rgba(5, 201, 119, 0.5);
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 12px -12px -12px 12px;
+    border: 1px solid var(--accent);
+    opacity: 0.35;
+    border-radius: 6px;
+    z-index: -1;
+  }
+  .card-label {
+    position: absolute;
+    top: -9px;
+    left: 20px;
+    padding: 2px 10px;
+    background: var(--bg);
+    font: 400 11px/1.4 var(--mono);
+    color: var(--accent);
+  }
+  dl {
+    margin: 0;
+  }
+  dl > div {
+    padding: 16px 0;
+    & + div {
+      border-top: 1px dashed var(--line-strong);
+    }
+  }
+  dt {
+    font: 400 11px/1 var(--mono);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  dd {
+    margin: 8px 0 0;
+    font-size: 17px;
+    color: var(--text);
+  }
+}
+
+/* ---------- skills marquee ---------- */
+.skills {
+  margin-top: 100px;
+  .kicker {
+    padding-right: 24px;
+  }
+}
+.marquee {
+  overflow: hidden;
+  border-top: 1px solid var(--line);
+  &:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .track {
+    display: flex;
+    width: max-content;
+    animation: slide 38s linear infinite;
+  }
+  &.rev .track {
+    animation-direction: reverse;
+    animation-duration: 46s;
+  }
+  &:hover .track {
+    animation-play-state: paused;
+  }
+  span {
+    padding: 22px 38px;
+    font: 400 clamp(34px, 4.6vw, 64px) / 1 var(--display);
+    letter-spacing: 1px;
+    color: transparent;
+    -webkit-text-stroke: 1px var(--line-strong);
+    white-space: nowrap;
+    transition: color 0.3s, -webkit-text-stroke-color 0.3s;
+    &::after {
+      content: '/';
+      margin-left: 76px;
+      color: var(--dim);
+      -webkit-text-stroke: 0;
+    }
+    &:hover {
+      color: var(--accent);
+      -webkit-text-stroke-color: var(--accent);
+    }
+  }
+}
+@keyframes slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (max-width: 1000px) {
+  .about {
+    padding-top: 90px;
+  }
+  .about-grid {
+    grid-template-columns: 1fr;
+  }
+  .about-card {
+    margin: 20px 12px 0 0;
+  }
+}
