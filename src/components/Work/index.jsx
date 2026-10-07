@@ -3,9 +3,20 @@ import { Link } from 'react-router-dom'
 import AnimatedLetters from '../AnimatedLetters'
 import ProjectArt, { Peek } from './ProjectArt'
 import HangTag from './HangTag'
+import Reel from './Reel'
 import useReveal from '../../hooks/useReveal'
 import { featured, more, opensource, more_os, hackathons } from './data'
 import './index.scss'
+
+// per-card layout on the reel: width, drop from the top, resting tilt
+const deal = [
+  { '--w': '560px', '--y': '0px', '--r': '-1.1deg' },
+  { '--w': '620px', '--y': '34px', '--r': '0.9deg' },
+  { '--w': '520px', '--y': '14px', '--r': '-0.7deg' },
+  { '--w': '580px', '--y': '56px', '--r': '1.2deg' },
+  { '--w': '520px', '--y': '6px', '--r': '-1deg' },
+  { '--w': '560px', '--y': '56px', '--r': '0.8deg' },
+]
 
 const sections = [
   { id: 'projects', n: '01', label: 'Projects' },
@@ -170,13 +181,13 @@ const Work = () => {
               <h2>Selected <em>projects</em></h2>
             </div>
 
-            <div className="cards">
+            <Reel count={featured.length}>
               {featured.map((p, i) => (
                 <article
                   key={p.id}
                   className="card"
                   data-reveal
-                  style={{ '--d': (i % 2) * 120 }}
+                  style={{ '--d': 0, ...deal[i % deal.length] }}
                   onMouseMove={tiltMove}
                   onMouseLeave={tiltLeave}
                 >
@@ -217,7 +228,7 @@ const Work = () => {
                   </div>
                 </article>
               ))}
-            </div>
+            </Reel>
 
             <ul className="more">
               <li className="more-head" data-reveal>

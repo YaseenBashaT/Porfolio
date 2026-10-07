@@ -197,10 +197,139 @@
 }
 
 /* ---------- project cards ---------- */
-.cards {
+/* fallback (phones, short screens): a plain stack */
+.reel-track {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 28px;
+}
+.thread,
+.reel-hud {
+  display: none;
+}
+
+/* ---------- pinned horizontal reel ---------- */
+@media (min-width: 1101px) and (min-height: 860px) {
+  .reel {
+    margin-right: calc(-1 * clamp(24px, 5vw, 90px));
+  }
+  .reel-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    // cards dissolve into the page on the left instead of being cut off
+    -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 90px);
+    mask-image: linear-gradient(90deg, transparent 0, #000 90px);
+  }
+  .reel-track {
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    gap: 70px;
+    width: max-content;
+    height: 100%;
+    padding: 96px 160px 90px 6px;
+    will-change: transform;
+  }
+  .reel-track .card {
+    position: relative;
+    flex: 0 0 var(--w, 560px);
+    margin-top: var(--y, 0px);
+    rotate: var(--r, 0deg);
+    transition: rotate 0.7s var(--ease), opacity 1s var(--ease),
+      transform 1s var(--ease);
+    z-index: 1;
+
+    &:hover {
+      rotate: 0deg;
+      z-index: 2;
+    }
+    // the pin the thread runs through
+    &::before {
+      content: '';
+      position: absolute;
+      top: -7px;
+      left: 50%;
+      z-index: 3;
+      width: 14px;
+      height: 14px;
+      margin-left: -7px;
+      background: var(--bg);
+      border: 2px solid var(--accent);
+      border-radius: 50%;
+    }
+  }
+  .reel-track .card-inner {
+    padding: 22px 22px 24px;
+  }
+  .reel-track .card-art {
+    aspect-ratio: 3 / 0.98;
+    .art {
+      width: auto;
+      height: 84%;
+    }
+  }
+  .thread {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+    z-index: 0;
+    fill: none;
+  }
+  .thread-base {
+    stroke: var(--line-strong);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 9;
+  }
+  .thread-line {
+    stroke: var(--accent);
+    stroke-width: 2;
+    stroke-linecap: round;
+  }
+
+  .reel-hud {
+    position: absolute;
+    left: 6px;
+    right: 90px;
+    bottom: 34px;
+    display: grid;
+    grid-template-columns: auto auto 1fr;
+    align-items: center;
+    gap: 24px;
+    font: 400 12px/1 var(--mono);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    pointer-events: none;
+
+    b {
+      color: var(--accent);
+      font-weight: 500;
+    }
+  }
+  .reel-bar {
+    position: relative;
+    height: 1px;
+    background: var(--line-strong);
+    b {
+      position: absolute;
+      inset: -1px 0;
+      background: var(--accent);
+      transform-origin: left;
+      transform: scaleX(0);
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .reel-track {
+    grid-template-columns: 1fr;
+  }
 }
 
 .card {
@@ -723,9 +852,6 @@
   }
   .rail {
     display: none;
-  }
-  .cards {
-    grid-template-columns: 1fr;
   }
   .os {
     grid-template-columns: 1fr;
