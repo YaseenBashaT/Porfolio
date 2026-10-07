@@ -70,4 +70,17 @@ const ProjectArt = ({ name }) => (
   </svg>
 )
 
+// Same artwork, drawn inverted, plus the labels that explain what is inside.
+// Revealed through the cursor lens (see .peek in index.scss).
+export const Peek = ({ name, items = [] }) => (
+  <div className="peek" aria-hidden="true">
+    <svg className="art" viewBox="0 0 300 200" fill="none" stroke="currentColor" strokeWidth="1.5">
+      {arts[name]}
+      {items.map((l) => (
+        <text key={l.t} x={l.x} y={l.y} className="peek-label">{l.t}</text>
+      ))}
+    </svg>
+  </div>
+)
+
 export default ProjectArt

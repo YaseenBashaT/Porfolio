@@ -1,3 +1,20 @@
+/* registered so the lens can grow smoothly and sweep on its own on touch */
+@property --lr {
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0px;
+}
+@property --ax {
+  syntax: '<length-percentage>';
+  inherits: true;
+  initial-value: 50%;
+}
+@property --ay {
+  syntax: '<length-percentage>';
+  inherits: true;
+  initial-value: 50%;
+}
+
 .work {
   padding: 110px clamp(24px, 5vw, 90px) 80px clamp(24px, 6vw, 110px);
   max-width: 1500px;
@@ -273,7 +290,6 @@
     width: 74%;
     height: auto;
     overflow: visible;
-    transition: transform 0.8s var(--ease);
     path,
     rect,
     circle {
@@ -291,9 +307,6 @@
       stroke-width: 2.5;
     }
   }
-}
-.card:hover .art {
-  transform: scale(1.06) translateY(-3px);
 }
 .card.is-in .art {
   path,
@@ -756,5 +769,263 @@
   .stats > div + div {
     padding-left: 0;
     border-left: 0;
+  }
+}
+
+
+/* =====================================================================
+   X-ray lens: the cursor opens a circle on the artwork that shows what is
+   inside the system, drawn inverted with the real labels.
+   ===================================================================== */
+.card-art {
+  --lr: 0px;
+  transition: --lr 0.6s var(--ease);
+
+  &:hover {
+    --lr: 104px;
+  }
+  .peek {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    pointer-events: none;
+    background: var(--accent);
+    color: #0e232a;
+    -webkit-mask-image: radial-gradient(circle var(--lr) at var(--ax) var(--ay), #000 calc(100% - 1px), transparent 100%);
+    mask-image: radial-gradient(circle var(--lr) at var(--ax) var(--ay), #000 calc(100% - 1px), transparent 100%);
+
+    .art {
+      .node {
+        fill: var(--accent);
+      }
+      .dotfill {
+        fill: #0e232a;
+      }
+    }
+    .peek-label {
+      font: 500 8.6px var(--mono);
+      fill: #0e232a;
+      stroke: none;
+      letter-spacing: 0.2px;
+    }
+  }
+  .card-hint {
+    position: absolute;
+    right: 14px;
+    top: 12px;
+    font: 400 10.5px/1 var(--mono);
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--muted);
+    transition: opacity 0.3s;
+  }
+  &:hover .card-hint {
+    opacity: 0;
+  }
+}
+@media (hover: none) {
+  .card-art {
+    --lr: 70px;
+    .peek {
+      animation: sweep 7s ease-in-out infinite alternate;
+    }
+    .card-hint {
+      display: none;
+    }
+  }
+}
+@keyframes sweep {
+  from {
+    --ax: 14%;
+    --ay: 30%;
+  }
+  to {
+    --ax: 86%;
+    --ay: 70%;
+  }
+}
+
+/* ---------- diff blocks on PR rows ---------- */
+.diff {
+  display: inline-flex;
+  gap: 2px;
+  margin-left: 10px;
+  vertical-align: middle;
+
+  i {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 1px;
+    background: var(--line-strong);
+    transition: background 0.3s calc(var(--n) * 60ms);
+  }
+}
+.os-prs a:hover .diff i.add,
+.os-prs a:focus-visible .diff i.add {
+  background: var(--accent);
+}
+.os-prs a:hover .diff i.del {
+  background: var(--muted);
+}
+.os.is-in .diff i.add {
+  animation: blockIn 0.5s var(--ease) calc(0.5s + var(--n) * 70ms) both;
+}
+@keyframes blockIn {
+  from {
+    background: var(--line-strong);
+  }
+  to {
+    background: var(--accent);
+  }
+}
+
+/* ---------- rubber stamp on placements ---------- */
+.timeline .tl-body {
+  position: relative;
+}
+.timeline li:has(.stamp) .tl-body {
+  padding-right: 150px;
+}
+.stamp {
+  position: absolute;
+  top: 50%;
+  right: 24px;
+  width: 98px;
+  height: 98px;
+  margin-top: -49px;
+  display: grid;
+  place-content: center;
+  text-align: center;
+  color: var(--accent);
+  border: 2px solid currentColor;
+  border-radius: 50%;
+  transform: rotate(-12deg);
+  opacity: 0;
+  pointer-events: none;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 4px;
+    border: 1px dashed currentColor;
+    border-radius: 50%;
+    opacity: 0.7;
+  }
+  b {
+    font: 400 28px/1 var(--display);
+    letter-spacing: 1px;
+  }
+  small {
+    margin-top: 4px;
+    font: 500 9.5px/1 var(--mono);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+}
+.timeline li.is-in .stamp {
+  animation: stamp 0.75s cubic-bezier(0.2, 1.5, 0.35, 1) 0.7s both;
+}
+@keyframes stamp {
+  0% {
+    opacity: 0;
+    transform: rotate(10deg) scale(2.8);
+  }
+  60% {
+    opacity: 0.95;
+    transform: rotate(-12deg) scale(0.92);
+  }
+  100% {
+    opacity: 0.9;
+    transform: rotate(-12deg) scale(1);
+  }
+}
+
+/* ---------- project tag hanging from the cursor ---------- */
+.hang {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.25s;
+  &.on {
+    opacity: 1;
+  }
+}
+.hang-swing {
+  position: relative;
+  transform-origin: 0 0;
+}
+.hang-string {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 46px;
+  background: var(--text);
+  opacity: 0.6;
+}
+.hang-card {
+  position: absolute;
+  left: -90px;
+  top: 46px;
+  width: 180px;
+  padding: 12px 12px 14px;
+  background: var(--panel-2);
+  border: 1px solid var(--accent);
+  border-radius: 4px;
+  color: var(--accent);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+
+  &::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: -5px;
+    width: 9px;
+    height: 9px;
+    margin-left: -4.5px;
+    background: var(--bg);
+    border: 1px solid var(--accent);
+    border-radius: 50%;
+  }
+  svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom: 8px;
+  }
+  b {
+    display: block;
+    font: 400 18px/1.1 var(--display);
+    letter-spacing: 1px;
+    color: var(--text);
+  }
+  span {
+    display: block;
+    margin-top: 5px;
+    font: 400 10.5px/1.3 var(--mono);
+    color: var(--muted);
+  }
+}
+@media (hover: none) {
+  .hang {
+    display: none;
+  }
+}
+@media (max-width: 720px) {
+  .timeline li:has(.stamp) .tl-body {
+    padding-right: 24px;
+  }
+  .stamp {
+    position: relative;
+    top: auto;
+    right: auto;
+    margin: 0 0 14px;
+    width: 80px;
+    height: 80px;
   }
 }

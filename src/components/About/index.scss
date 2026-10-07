@@ -134,11 +134,11 @@
   .track {
     display: flex;
     width: max-content;
-    animation: slide 38s linear infinite;
+    animation: slide 18s linear infinite;
   }
   &.rev .track {
     animation-direction: reverse;
-    animation-duration: 46s;
+    animation-duration: 22s;
   }
   &:hover .track {
     animation-play-state: paused;

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedLetters from '../AnimatedLetters'
-import ProjectArt from './ProjectArt'
+import ProjectArt, { Peek } from './ProjectArt'
+import HangTag from './HangTag'
 import useReveal from '../../hooks/useReveal'
 import { featured, more, opensource, more_os, hackathons } from './data'
 import './index.scss'
@@ -50,15 +51,33 @@ const tiltMove = (e) => {
   el.style.setProperty('--my', `${y * 100}%`)
   el.style.setProperty('--rx', `${((0.5 - y) * 5).toFixed(2)}deg`)
   el.style.setProperty('--ry', `${((x - 0.5) * 6).toFixed(2)}deg`)
+  const a = el.querySelector('.card-art').getBoundingClientRect()
+  el.style.setProperty('--ax', `${e.clientX - a.left}px`)
+  el.style.setProperty('--ay', `${e.clientY - a.top}px`)
 }
 const tiltLeave = (e) => {
   e.currentTarget.style.setProperty('--rx', '0deg')
   e.currentTarget.style.setProperty('--ry', '0deg')
 }
 
+// GitHub-style diff squares from "+86 −2"
+const DiffBlocks = ({ diff }) => {
+  const [, a, d] = diff.match(/\+(\d+)(?:\s*[−-](\d+))?/) || []
+  const add = Number(a), del = Number(d || 0)
+  const dels = del ? Math.max(1, Math.round((5 * del) / (add + del))) : 0
+  return (
+    <span className="diff" title={diff} aria-label={diff}>
+      {[0, 1, 2, 3, 4].map((n) => (
+        <i key={n} className={n < 5 - dels ? 'add' : 'del'} style={{ '--n': n }} />
+      ))}
+    </span>
+  )
+}
+
 const Work = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
   const [active, setActive] = useState('projects')
+  const [tag, setTag] = useState(null)
   useReveal()
 
   useEffect(() => {
@@ -93,6 +112,7 @@ const Work = () => {
 
   return (
     <div className="work">
+      <HangTag item={tag} />
       <header className="work-hero">
         <p className="kicker" data-reveal>
           <span>Index</span> 2023 — now
@@ -163,7 +183,9 @@ const Work = () => {
                   <div className="card-inner">
                     <div className="card-art">
                       <ProjectArt name={p.art} />
+                      <Peek name={p.art} items={p.peek} />
                       <span className="card-idx">0{i + 1}</span>
+                      <span className="card-hint">move over me</span>
                     </div>
                     <div className="card-meta">
                       <span>{p.kind}</span>
@@ -203,7 +225,13 @@ const Work = () => {
               </li>
               {more.map((m, i) => (
                 <li key={m.title} data-reveal style={{ '--d': i * 70 }}>
-                  <a href={m.href} target="_blank" rel="noreferrer" data-cursor="Open">
+                  <a
+                    href={m.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    onMouseEnter={() => setTag(m)}
+                    onMouseLeave={() => setTag(null)}
+                  >
                     <span className="m-year">{m.year}</span>
                     <span className="m-title">{m.title}</span>
                     <span className="m-note">{m.note}</span>
@@ -250,6 +278,7 @@ const Work = () => {
                           <span className="pr-meta">
                             #{pr.n} · {pr.date}
                             {pr.diff && <> · <i>{pr.diff}</i></>}
+                            {pr.diff && <DiffBlocks diff={pr.diff} />}
                           </span>
                         </a>
                       </li>
@@ -276,6 +305,12 @@ const Work = () => {
                   <span className="tl-when">{h.when}</span>
                   <span className="tl-dot" />
                   <a href={h.href} target="_blank" rel="noreferrer" className="tl-body" data-cursor="Open">
+                    {h.stamp && (
+                      <span className="stamp" aria-hidden="true">
+                        <b>{h.stamp[0]}</b>
+                        <small>{h.stamp[1]}</small>
+                      </span>
+                    )}
                     <span className="tl-tag">{h.tag}</span>
                     <h3>{h.title}</h3>
                     <p>{h.text}</p>

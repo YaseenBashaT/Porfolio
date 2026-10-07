@@ -4,6 +4,7 @@
 export const featured = [
   {
     id: 'scrb',
+    peek: [{ x: 52, y: 70, t: 'ZCQL query shown' }, { x: 52, y: 100, t: 'district = own only' }, { x: 52, y: 130, t: 'audit: who / when' }, { x: 52, y: 160, t: 'ಕನ್ನಡ ⇄ English' }],
     title: 'SCRB Sahayak',
     kind: 'KSP Datathon 2026',
     year: '2026',
@@ -20,6 +21,7 @@ export const featured = [
   },
   {
     id: 'triage',
+    peek: [{ x: 62, y: 54, t: '6 rewards' }, { x: 62, y: 74, t: 'calibration .53→.98' }, { x: 62, y: 94, t: 'parsimony .25→.94' }, { x: 62, y: 114, t: '200 GRPO steps' }],
     title: 'Enterprise IT Triage Agent',
     kind: 'OpenEnv · 12th of 31,000+',
     year: '2026',
@@ -38,6 +40,7 @@ export const featured = [
   },
   {
     id: 'memops',
+    peek: [{ x: 66, y: 118, t: 'INC-2024-1014' }, { x: 94, y: 44, t: 'payments-api' }, { x: 104, y: 170, t: 'INC-2025-0203' }, { x: 176, y: 62, t: 'INC-2025-0819' }, { x: 208, y: 158, t: 'recall()' }],
     title: 'MemOps',
     kind: 'Incident memory · solo',
     year: '2026',
@@ -55,6 +58,7 @@ export const featured = [
   },
   {
     id: 'analyzer',
+    peek: [{ x: 60, y: 160, t: 'BM25 → top-k chunks' }, { x: 60, y: 176, t: 'then the LLM' }, { x: 118, y: 62, t: '< 5 s' }, { x: 186, y: 62, t: '50+ repos' }],
     title: 'GitHub Repository Analyzer',
     kind: 'Top 3 of 108 teams',
     year: '2025',
@@ -70,6 +74,7 @@ export const featured = [
   },
   {
     id: 'resume',
+    peek: [{ x: 98, y: 38, t: 'score / dimension' }, { x: 98, y: 62, t: 'skills extraction' }, { x: 98, y: 118, t: 'role detection' }, { x: 98, y: 158, t: 'mood: brutal' }],
     title: 'AI Resume Analyzer',
     kind: 'LLM tooling',
     year: '2025',
@@ -85,6 +90,7 @@ export const featured = [
   },
   {
     id: 'route',
+    peek: [{ x: 30, y: 180, t: 'XGBoost risk score' }, { x: 108, y: 24, t: 'OSRM routes' }, { x: 176, y: 28, t: 'safer path' }],
     title: 'Safe Route Map',
     kind: 'ML + maps',
     year: '2026',
@@ -103,6 +109,7 @@ export const featured = [
 export const more = [
   {
     title: 'Quiz Analysis System',
+    art: 'bars',
     note: 'NEET quiz analytics with topic-wise trends and study recommendations',
     stack: 'Python · Data viz',
     year: '2025',
@@ -110,6 +117,7 @@ export const more = [
   },
   {
     title: 'This portfolio',
+    art: 'code',
     note: 'The site you are on. React, Sass and a lot of easing curves',
     stack: 'React · Sass',
     year: '2023',
@@ -210,6 +218,7 @@ export const hackathons = [
   {
     when: 'Apr 2026',
     tag: 'Hackathon · 12th of 31,000+',
+    stamp: ['12th', 'of 31,000+'],
     title: 'OpenEnv Hackathon · Top 100 finalist',
     text: 'Hosted by Meta, Hugging Face and PyTorch. Our RL agent for enterprise IT triage placed 12th of 31,000+ registrations. I owned reward design and GRPO training.',
     href: 'https://huggingface.co/spaces/yahid/triage_agent_env',
@@ -224,6 +233,7 @@ export const hackathons = [
   {
     when: '2025',
     tag: 'Hackathon · Top 3 of 108',
+    stamp: ['Top 3', 'of 108'],
     title: 'PythonGuru × Supervity AI Hackathon',
     text: 'Placed top 3 of 108 teams with the GitHub Repository Analyzer, a RAG tool that answers questions about unfamiliar codebases in under five seconds.',
     href: 'https://github.com/YaseenBashaT/97-Yaseen-Basha/tree/main/Intelligent-Github-Repository-Analyzer',
