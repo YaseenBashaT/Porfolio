@@ -76,9 +76,16 @@ export const Peek = ({ name, items = [] }) => (
   <div className="peek" aria-hidden="true">
     <svg className="art" viewBox="0 0 300 200" fill="none" stroke="currentColor" strokeWidth="1.5">
       {arts[name]}
-      {items.map((l) => (
-        <text key={l.t} x={l.x} y={l.y} className="peek-label">{l.t}</text>
-      ))}
+      {items.map((l) => {
+        const lines = [].concat(l.t)
+        return (
+          <text key={lines.join()} x={l.x} y={l.y} textAnchor={l.a || 'start'} className="peek-label">
+            {lines.map((ln, i) => (
+              <tspan key={ln} x={l.x} dy={i ? 10.5 : 0}>{ln}</tspan>
+            ))}
+          </text>
+        )
+      })}
     </svg>
   </div>
 )

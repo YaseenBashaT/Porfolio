@@ -4,7 +4,7 @@
 export const featured = [
   {
     id: 'scrb',
-    peek: [{ x: 52, y: 70, t: 'ZCQL query shown' }, { x: 52, y: 100, t: 'district = own only' }, { x: 52, y: 130, t: 'audit: who / when' }, { x: 52, y: 160, t: 'ಕನ್ನಡ ⇄ English' }],
+    peek: [{ x: 100, y: 70, t: 'ZCQL query shown' }, { x: 100, y: 100, t: 'district = own only' }, { x: 100, y: 130, t: 'audit: who / when' }, { x: 100, y: 163, t: 'ಕನ್ನಡ ⇄ English' }],
     title: 'SCRB Sahayak',
     kind: 'KSP Datathon 2026',
     year: '2026',
@@ -21,7 +21,7 @@ export const featured = [
   },
   {
     id: 'triage',
-    peek: [{ x: 62, y: 54, t: '6 rewards' }, { x: 62, y: 74, t: 'calibration .53→.98' }, { x: 62, y: 94, t: 'parsimony .25→.94' }, { x: 62, y: 114, t: '200 GRPO steps' }],
+    peek: [{ x: 208, y: 66, t: ['calibration', '.53 → .98'] }, { x: 208, y: 104, t: ['parsimony', '.25 → .94'] }, { x: 208, y: 142, t: ['200 GRPO', 'steps'] }, { x: 52, y: 189, t: '6 rewards, 1 run' }],
     title: 'Enterprise IT Triage Agent',
     kind: 'OpenEnv · 12th of 31,000+',
     year: '2026',
@@ -40,7 +40,7 @@ export const featured = [
   },
   {
     id: 'memops',
-    peek: [{ x: 66, y: 118, t: 'INC-2024-1014' }, { x: 94, y: 44, t: 'payments-api' }, { x: 104, y: 170, t: 'INC-2025-0203' }, { x: 176, y: 62, t: 'INC-2025-0819' }, { x: 208, y: 158, t: 'recall()' }],
+    peek: [{ x: 60, y: 80, a: 'middle', t: 'INC-2024-1014' }, { x: 130, y: 33, a: 'middle', t: 'payments-api' }, { x: 228, y: 74, t: 'INC-2025-0819' }, { x: 120, y: 177, a: 'middle', t: 'INC-2025-0203' }, { x: 250, y: 162, a: 'middle', t: 'recall()' }],
     title: 'MemOps',
     kind: 'Incident memory · solo',
     year: '2026',
@@ -58,7 +58,7 @@ export const featured = [
   },
   {
     id: 'analyzer',
-    peek: [{ x: 60, y: 160, t: 'BM25 → top-k chunks' }, { x: 60, y: 176, t: 'then the LLM' }, { x: 118, y: 62, t: '< 5 s' }, { x: 186, y: 62, t: '50+ repos' }],
+    peek: [{ x: 48, y: 68, t: '< 5 s' }, { x: 252, y: 68, a: 'end', t: '50+ repos' }, { x: 150, y: 168, a: 'middle', t: 'BM25 → top-k chunks, then the LLM' }],
     title: 'GitHub Repository Analyzer',
     kind: 'Top 3 of 108 teams',
     year: '2025',
@@ -74,7 +74,7 @@ export const featured = [
   },
   {
     id: 'resume',
-    peek: [{ x: 98, y: 38, t: 'score / dimension' }, { x: 98, y: 62, t: 'skills extraction' }, { x: 98, y: 118, t: 'role detection' }, { x: 98, y: 158, t: 'mood: brutal' }],
+    peek: [{ x: 72, y: 50, a: 'end', t: ['score per', 'dimension'] }, { x: 72, y: 88, a: 'end', t: ['skills', 'extraction'] }, { x: 72, y: 128, a: 'end', t: ['role', 'detection'] }, { x: 228, y: 150, t: ['mood:', 'brutal'] }],
     title: 'AI Resume Analyzer',
     kind: 'LLM tooling',
     year: '2025',
@@ -90,7 +90,7 @@ export const featured = [
   },
   {
     id: 'route',
-    peek: [{ x: 30, y: 180, t: 'XGBoost risk score' }, { x: 108, y: 24, t: 'OSRM routes' }, { x: 176, y: 28, t: 'safer path' }],
+    peek: [{ x: 24, y: 30, t: 'OSRM routes' }, { x: 262, y: 70, a: 'end', t: 'safer path' }, { x: 34, y: 187, t: 'XGBoost risk score' }],
     title: 'Safe Route Map',
     kind: 'ML + maps',
     year: '2026',

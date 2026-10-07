@@ -922,10 +922,14 @@
         fill: #0e232a;
       }
     }
+    // the halo is the lens colour, so a line behind a label is masked, not struck through
     .peek-label {
       font: 500 8.6px var(--mono);
       fill: #0e232a;
-      stroke: none;
+      stroke: var(--accent);
+      stroke-width: 4px;
+      stroke-linejoin: round;
+      paint-order: stroke;
       letter-spacing: 0.2px;
     }
   }
