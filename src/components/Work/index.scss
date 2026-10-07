@@ -340,8 +340,7 @@
   background: var(--panel);
   border: 1px solid var(--line);
   border-radius: 6px;
-  transform: rotateX(var(--rx)) rotateY(var(--ry));
-  transition: transform 0.5s var(--ease), border-color 0.4s, background 0.4s;
+  transition: border-color 0.4s, background 0.4s;
   display: flex;
   flex-direction: column;
 

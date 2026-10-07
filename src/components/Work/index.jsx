@@ -52,23 +52,15 @@ const Counter = ({ value }) => {
   return <span ref={el}>0</span>
 }
 
-// card tilts and a hairline highlight follows the pointer
+// a faint spotlight follows the pointer; the lens reads its position from --ax/--ay
 const tiltMove = (e) => {
   const el = e.currentTarget
   const r = el.getBoundingClientRect()
-  const x = (e.clientX - r.left) / r.width
-  const y = (e.clientY - r.top) / r.height
-  el.style.setProperty('--mx', `${x * 100}%`)
-  el.style.setProperty('--my', `${y * 100}%`)
-  el.style.setProperty('--rx', `${((0.5 - y) * 5).toFixed(2)}deg`)
-  el.style.setProperty('--ry', `${((x - 0.5) * 6).toFixed(2)}deg`)
+  el.style.setProperty('--mx', `${((e.clientX - r.left) / r.width) * 100}%`)
+  el.style.setProperty('--my', `${((e.clientY - r.top) / r.height) * 100}%`)
   const a = el.querySelector('.card-art').getBoundingClientRect()
   el.style.setProperty('--ax', `${e.clientX - a.left}px`)
   el.style.setProperty('--ay', `${e.clientY - a.top}px`)
-}
-const tiltLeave = (e) => {
-  e.currentTarget.style.setProperty('--rx', '0deg')
-  e.currentTarget.style.setProperty('--ry', '0deg')
 }
 
 // GitHub-style diff squares from "+86 −2"
@@ -189,7 +181,6 @@ const Work = () => {
                   data-reveal
                   style={{ '--d': 0, ...deal[i % deal.length] }}
                   onMouseMove={tiltMove}
-                  onMouseLeave={tiltLeave}
                 >
                   <div className="card-inner">
                     <div className="card-art">
