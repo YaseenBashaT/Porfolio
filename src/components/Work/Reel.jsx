@@ -39,6 +39,7 @@ const Reel = ({ count, children }) => {
     const layout = () => {
       if (!mq.matches) {
         reel.current.style.height = ''
+        track.current.style.width = ''
         stage.current.style.width = ''
         track.current.style.transform = ''
         return
@@ -47,12 +48,18 @@ const Reel = ({ count, children }) => {
       stage.current.style.width = ''
       const right = scroller.getBoundingClientRect().left + scroller.clientWidth
       stage.current.style.width = `${right - stage.current.getBoundingClientRect().left}px`
-      const w = track.current.scrollWidth
+      // size the track from the cards themselves: `width: max-content` is
+      // measured differently by Firefox and over-counts this flex row
+      const cards = [...track.current.querySelectorAll('.card')]
+      const last = cards[cards.length - 1]
+      const padRight = parseFloat(getComputedStyle(track.current).paddingRight)
+      const w = last.offsetLeft + last.offsetWidth + padRight
+      track.current.style.width = `${w}px`
       travel = Math.max(0, w - stage.current.clientWidth)
       reel.current.style.height = `${stage.current.clientHeight + travel}px`
 
       // thread: smooth S-curves through each card's pin
-      const pts = [...track.current.querySelectorAll('.card')].map((c) => [
+      const pts = cards.map((c) => [
         c.offsetLeft + c.offsetWidth / 2,
         c.offsetTop,
       ])
