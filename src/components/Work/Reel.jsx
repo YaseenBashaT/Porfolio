@@ -39,9 +39,14 @@ const Reel = ({ count, children }) => {
     const layout = () => {
       if (!mq.matches) {
         reel.current.style.height = ''
+        stage.current.style.width = ''
         track.current.style.transform = ''
         return
       }
+      // run to the real screen edge, even where .work is width-capped
+      stage.current.style.width = ''
+      const right = scroller.getBoundingClientRect().left + scroller.clientWidth
+      stage.current.style.width = `${right - stage.current.getBoundingClientRect().left}px`
       const w = track.current.scrollWidth
       travel = Math.max(0, w - stage.current.clientWidth)
       reel.current.style.height = `${stage.current.clientHeight + travel}px`
