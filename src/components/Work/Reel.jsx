@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 // Pinned horizontal reel. The tall outer box gives vertical scroll distance;
 // the sticky stage stays on screen while that distance is converted into
 // sideways travel of the track. A thread through the card pins draws as you go.
-const MQ = '(min-width: 1101px) and (min-height: 860px)'
+const MQ = '(min-width: 1101px) and (min-height: 900px)'
 const pad = (n) => String(n).padStart(2, '0')
 
 const Reel = ({ count, children }) => {

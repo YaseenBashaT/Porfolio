@@ -8,14 +8,14 @@ import useReveal from '../../hooks/useReveal'
 import { featured, more, opensource, more_os, hackathons } from './data'
 import './index.scss'
 
-// per-card layout on the reel: width, drop from the top, resting tilt
+// per-card layout on the reel: width and drop from the top
 const deal = [
-  { '--w': '560px', '--y': '0px', '--r': '-1.1deg' },
-  { '--w': '620px', '--y': '34px', '--r': '0.9deg' },
-  { '--w': '520px', '--y': '14px', '--r': '-0.7deg' },
-  { '--w': '580px', '--y': '56px', '--r': '1.2deg' },
-  { '--w': '520px', '--y': '6px', '--r': '-1deg' },
-  { '--w': '560px', '--y': '56px', '--r': '0.8deg' },
+  { '--w': '540px', '--y': '30px' },
+  { '--w': '540px', '--y': '0px' },
+  { '--w': '540px', '--y': '16px' },
+  { '--w': '540px', '--y': '40px' },
+  { '--w': '540px', '--y': '8px' },
+  { '--w': '540px', '--y': '36px' },
 ]
 
 const sections = [

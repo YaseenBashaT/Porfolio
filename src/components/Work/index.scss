@@ -209,7 +209,7 @@
 }
 
 /* ---------- pinned horizontal reel ---------- */
-@media (min-width: 1101px) and (min-height: 860px) {
+@media (min-width: 1101px) and (min-height: 900px) {
   .reel {
     margin-right: calc(-1 * clamp(24px, 5vw, 90px));
   }
@@ -228,20 +228,16 @@
     align-items: flex-start;
     gap: 110px;
     height: 100%;
-    padding: 96px 80px 90px 110px;
+    padding: 78px 80px 90px 110px;
     will-change: transform;
   }
   .reel-track .card {
     position: relative;
     flex: 0 0 var(--w, 560px);
     margin-top: var(--y, 0px);
-    rotate: var(--r, 0deg);
-    transition: rotate 0.7s var(--ease), opacity 1s var(--ease),
-      transform 1s var(--ease);
     z-index: 1;
 
     &:hover {
-      rotate: 0deg;
       z-index: 2;
     }
     // the pin the thread runs through
@@ -259,13 +255,13 @@
       border-radius: 50%;
     }
   }
-  .reel-track .card-inner {
-    padding: 22px 22px 24px;
-  }
+  // thumbnails keep their original pixel size (453 x 256, drawing 335 wide)
+  // however wide the card is
   .reel-track .card-art {
-    aspect-ratio: 3 / 1.12;
+    aspect-ratio: auto;
+    height: 256px;
     .art {
-      padding: 10px 6%;
+      width: 335px;
     }
   }
   .thread {
@@ -413,11 +409,9 @@
     color: var(--muted);
   }
   .art {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    padding: 16px 18%;
+    position: relative;
+    width: 74%;
+    height: auto;
     overflow: visible;
     path,
     rect,
