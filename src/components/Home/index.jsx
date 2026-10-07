@@ -2,7 +2,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import AnimatedLetters from '../AnimatedLetters'
 import LogoTitle from '../../assets/images/logo-y.png'
-import Me from '../../assets/images/me.webp'
 import useMagnetic from '../../hooks/useMagnetic'
 import './index.scss'
 
@@ -100,7 +99,13 @@ const Home = () => {
         <div className="portrait-card">
           <div className="portrait-grid" />
           <span className="portrait-big">YB</span>
-          <img src={Me} alt="Yaseen Basha" draggable="false" />
+          <div className="portrait-empty">
+            <svg viewBox="0 0 120 120" fill="none" stroke="currentColor" strokeWidth="1.5" aria-hidden="true">
+              <circle cx="60" cy="46" r="20" />
+              <path d="M20 108c4-24 20-36 40-36s36 12 40 36" />
+            </svg>
+            <span>Photo coming soon</span>
+          </div>
           <span className="chip chip-a">Final-year · AI &amp; ML</span>
           <span className="chip chip-b">12th of 31,000+ · OpenEnv</span>
         </div>
