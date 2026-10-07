@@ -109,13 +109,6 @@ export const more = [
     href: 'https://github.com/YaseenBashaT/Quiz-Analysis-System',
   },
   {
-    title: 'AetherFlow',
-    note: 'Creative digital agency website, built as a KeshavSoft task',
-    stack: 'HTML · CSS · JS',
-    year: '2025',
-    href: 'https://yaseenbashat.github.io/Task1-KeshavSoft/',
-  },
-  {
     title: 'This portfolio',
     note: 'The site you are on. React, Sass and a lot of easing curves',
     stack: 'React · Sass',
@@ -236,17 +229,10 @@ export const hackathons = [
     href: 'https://github.com/YaseenBashaT/97-Yaseen-Basha/tree/main/Intelligent-Github-Repository-Analyzer',
   },
   {
-    when: 'Nov 2025',
-    tag: 'Task',
-    title: 'KeshavSoft · Task 1',
-    text: 'Built AetherFlow, a creative digital agency website, as Task 1 for KeshavSoft.',
-    href: 'https://yaseenbashat.github.io/Task1-KeshavSoft/',
-  },
-  {
     when: 'Ongoing',
     tag: 'Practice',
-    title: 'NeetCode / DSA',
-    text: 'Daily problem solving in Python and Java. Submissions are synced to a public repo.',
+    title: 'LeetCode',
+    text: 'Daily problem solving in Python and Java, alongside the DSA certification from Apna College.',
     href: 'https://leetcode.com/u/yaseenbashat/',
   },
 ]
