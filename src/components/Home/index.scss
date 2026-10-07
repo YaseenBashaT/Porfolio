@@ -270,7 +270,7 @@
     border-radius: 4px;
     font: 400 11.5px/1 var(--mono);
     letter-spacing: 0.4px;
-    color: var(--text);
+    color: #edeaea;
     white-space: nowrap;
   }
   .chip-a {
@@ -281,7 +281,7 @@
   .chip-b {
     bottom: 8%;
     right: 6%;
-    color: var(--accent);
+    color: #05c977;
     animation: float 7s ease-in-out -2s infinite;
   }
 

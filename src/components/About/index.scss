@@ -53,7 +53,7 @@
     margin: 0 0 20px;
     font-size: 17px;
     line-height: 1.75;
-    color: #b4b4b4;
+    color: var(--text-2);
   }
   .lead {
     font-size: clamp(22px, 2.2vw, 30px);

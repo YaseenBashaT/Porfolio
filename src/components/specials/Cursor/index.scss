@@ -22,12 +22,14 @@ html.has-cursor * {
   width: 6px;
   height: 6px;
   background: var(--accent);
+  view-transition-name: cursor-dot;
 }
 
 .cursor-outline {
+  view-transition-name: cursor-ring;
   width: 30px;
   height: 30px;
-  border: 1.5px solid hsla(0, 0%, 100%, 0.5);
+  border: 1.5px solid var(--cursor-ring);
   display: grid;
   place-items: center;
   transition: width 0.4s var(--ease), height 0.4s var(--ease),

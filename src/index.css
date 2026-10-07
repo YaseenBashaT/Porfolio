@@ -15,6 +15,61 @@
   --serif: 'Instrument Serif', Georgia, serif;
   --body: 'Hanken Grotesk', 'Helvetica Neue', sans-serif;
   --mono: 'JetBrains Mono', ui-monospace, monospace;
+  --text-2: #b4b4b4;
+  --cursor-ring: hsla(0, 0%, 100%, 0.5);
+  color-scheme: dark;
+}
+
+/* light: same teal, inverted. The old background becomes the ink. */
+:root[data-theme='light'] {
+  --bg: #eef1e9;
+  --panel: #e4e9df;
+  --panel-2: #d9e0d3;
+  --line: rgba(14, 35, 42, 0.12);
+  --line-strong: rgba(14, 35, 42, 0.26);
+  --text: #0e232a;
+  --text-2: #33474c;
+  --muted: #55676b;
+  --dim: #7d8d90;
+  --accent: #068a54;
+  --accent-soft: rgba(6, 138, 84, 0.12);
+  --cursor-ring: rgba(14, 35, 42, 0.5);
+  color-scheme: light;
+}
+
+/* while switching without View Transitions, fade colours instead */
+:root.theme-fade,
+:root.theme-fade *,
+:root.theme-fade *::before,
+:root.theme-fade *::after {
+  transition: background-color 0.6s, color 0.6s, border-color 0.6s, fill 0.6s,
+    stroke 0.6s !important;
+}
+
+/* circular reveal (View Transitions API): the new theme grows from the toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+  z-index: 1;
+}
+::view-transition-new(root) {
+  z-index: 2;
+}
+/* keep the cursor live and out of the snapshot */
+::view-transition-group(cursor-dot),
+::view-transition-group(cursor-ring) {
+  animation: none;
+}
+::view-transition-old(cursor-dot),
+::view-transition-old(cursor-ring) {
+  display: none;
+}
+::view-transition-new(cursor-dot),
+::view-transition-new(cursor-ring) {
+  animation: none;
 }
 
 html {

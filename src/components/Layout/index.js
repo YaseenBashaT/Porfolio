@@ -1,6 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 import Sidebar from '../Sidebar/'
+import ThemeToggle from '../specials/ThemeToggle'
 import './index.scss'
 
 const Layout = () => {
@@ -29,8 +30,8 @@ const Layout = () => {
     <div className="App">
       <Sidebar />
       <div className="progress"><i ref={bar} /></div>
+      <ThemeToggle />
       <div className="page" ref={page}>
-        <span className="tags top-tags">&lt;body&gt;</span>
         <div className="route" key={pathname}>
           <Outlet />
         </div>

@@ -1,0 +1,69 @@
+.theme-tag {
+  position: fixed;
+  top: 24px;
+  left: 90px;
+  z-index: 6;
+  padding: 4px 0;
+  background: none;
+  border: 0;
+  font: 18px 'La Belle Aurore', cursive;
+  color: var(--accent);
+  opacity: 0.55;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+
+  .attr {
+    opacity: 0;
+    display: inline-block;
+    max-width: 0;
+    overflow: hidden;
+    vertical-align: bottom;
+    transition: max-width 0.6s var(--ease), opacity 0.4s;
+  }
+  .val-window {
+    margin-left: 0.25em;
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .val {
+    display: inline-block;
+    border-bottom: 1px dashed currentColor;
+    animation: tagRoll 0.6s var(--ease) both;
+  }
+
+  // the attribute is "typed in" on hover, which is the hint that it's live
+  &:hover,
+  &:focus-visible {
+    opacity: 1;
+    .attr {
+      opacity: 1;
+      max-width: 120px;
+    }
+  }
+  &:focus-visible {
+    outline: 1px dashed var(--accent);
+    outline-offset: 4px;
+  }
+}
+
+@keyframes tagRoll {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .theme-tag {
+    display: block;
+    top: 14px;
+    left: 16px;
+    font-size: 16px;
+    opacity: 0.85;
+    .attr {
+      opacity: 1;
+      max-width: 120px;
+    }
+  }
+}
