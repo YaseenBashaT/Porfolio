@@ -47,6 +47,45 @@
   }
 }
 
+// one-time hint: the tag lights up, types its attribute and a ring rings out
+.theme-tag.hint {
+  animation: tagHint 2.8s var(--ease) 1;
+  .attr {
+    opacity: 1;
+    max-width: 120px;
+  }
+  .val-window {
+    position: relative;
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0 -6px;
+      border: 1px solid var(--accent);
+      border-radius: 4px;
+      animation: tagRing 1.4s ease-out 2 both;
+    }
+  }
+}
+@keyframes tagHint {
+  0%,
+  70% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.55;
+  }
+}
+@keyframes tagRing {
+  from {
+    opacity: 0.9;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(1.9, 2.6);
+  }
+}
+
 @keyframes tagRoll {
   from {
     transform: translateY(100%);

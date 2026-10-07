@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 import './index.scss'
 
@@ -8,7 +8,20 @@ const ThemeToggle = () => {
   const [theme, setTheme] = useState(
     () => document.documentElement.dataset.theme || 'dark'
   )
+  const [hint, setHint] = useState(false)
   const next = theme === 'dark' ? 'light' : 'dark'
+
+  // first visit only: nudge once after the intro, then remember
+  useEffect(() => {
+    try {
+      if (localStorage.getItem('themeHint')) return
+      const t = setTimeout(() => {
+        setHint(true)
+        localStorage.setItem('themeHint', '1')
+      }, 3600)
+      return () => clearTimeout(t)
+    } catch (e) {}
+  }, [])
 
   const commit = () => {
     document.documentElement.dataset.theme = next
@@ -56,8 +69,9 @@ const ThemeToggle = () => {
 
   return (
     <button
-      className="theme-tag"
+      className={`theme-tag${hint ? ' hint' : ''}`}
       onClick={toggle}
+      onAnimationEnd={() => setHint(false)}
       data-cursor={next}
       aria-label={`Switch to ${next} theme`}
       title={`Switch to ${next} theme`}
